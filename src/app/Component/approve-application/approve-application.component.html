@@ -1,0 +1,139 @@
+<div class="container">
+    <h2 class="py-4">ALL STUDENTS</h2>
+
+    <table class="table">
+        <thead>
+          
+            <tr>
+                <th scope="col">INDEX</th>
+                <th scope="col">PARENT_NAME</th>
+                <th scope="col">STUDENT_NAME</th>
+                <th scope="col">STUDENT_REGNO</th>
+                <th scope="col">ADDRESS</th>
+                <th scope="col">STATE</th>
+                <th scope="col">COUNTRY</th>
+                <th scope="col">CITY</th>
+                <th scope="col">ZIP_CODE</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">PRIM_CONTACT_PERSON</th>
+                <th scope="col">PRIM_CONTACT_NO</th>
+                <th scope="col">SEC_CONTACT_PERSON</th>
+                <th scope="col">SEC_CONTACT_NO</th>
+                <th scope="col">APPLICATION_STATUS</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let b of students; index as i">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{b.parentName}}</td>
+                <td>{{b.studentName}}</td>
+                <td>{{b.studentRegNo}}</td>
+                <td>{{b.address}}</td>
+                <td>{{b.state}}</td>
+                <td>{{b.country}}</td>
+                <td>{{b.city}}</td>
+                <td>{{b.zipCode}}</td>
+                <td>{{b.email}}</td>
+                <td>{{b.primContactPerson}}</td>
+                <td>{{b.primContactPersonMobile}}</td>
+                <td>{{b.secContactPerson}}</td>
+                <td>{{b.secContactPersonMobile}}</td>
+                <td>{{b.applicationStatus}}</td>
+
+                <td><button type="button" (click)="updatestudent(b, i)" style="margin-right:500;" class="btn btn-warning" >Change Status</button></td>
+          
+              </tr> 
+        </tbody>
+    </table>
+
+    <!-- <ng-container *ngIf="  "> -->
+
+
+    <input [(ngModel)]='student.studentRegNo' placeholder="Srudent Reg No" readonly>
+    <br> 
+    <!-- <br>    
+    <input [(ngModel)]='student.applicationStatus' placeholder="Enter applicationStatus">
+    <br/> -->
+
+    <!-- <label for="form_need">Status</label> -->
+    <select id="form_need" [(ngModel)]=student.applicationStatus name="acknowledge"
+        class="form-control" required="required"
+        data-error="Please specify your need.">
+        <option value="" selected disabled>Select Status</option>
+        <option>Approved</option> 
+        <option>Rejected</option>   
+    </select>
+    <br>
+    <button (click)="update(student)">Update Status</button>
+  <!-- </ng-container> -->
+
+
+  
+  <!-- <pre *ngIf="stud">{{stud.value | json}}</pre> -->
+    
+     <!-- <ng-container *ngIf="stud">
+      <h2 class="py-4">Edit Student</h2>
+      <form [formGroup]="stud">
+        <div class="form-group row">
+          <label for="firstName" class="col-sm-2 col-form-label">FirstName</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="firstName" formControlName="firstName">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="lastName" class="col-sm-2 col-form-label">lastName</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="lastName" formControlName="lastName">
+          </div>
+        </div>
+    
+        <div class="form-group row">
+          <label for="dob" class="col-sm-2 col-form-label">dob</label>
+          <div class="col-sm-3">
+            <input type="date" class="form-control" id="dob" formControlName="dob">
+          </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">email</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" id="email" formControlName="email">
+            </div>
+          </div>
+
+        <div class="form-group row">
+            <label for="phoneNumber" class="col-sm-2 col-form-label">Phone Number</label>
+            <div class="col-sm-3">
+              <input type="number" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="studClass" class="col-sm-2 col-form-label">studClass</label>
+            <div class="col-sm-3">
+              <input type="number" class="form-control" id="studClass" formControlName="studClass">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="division" class="col-sm-2 col-form-label">division</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" id="division" formControlName="division">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="rollNo" class="col-sm-2 col-form-label">rollNo</label>
+            <div class="col-sm-3">
+              <input type="rollNo" class="form-control" id="rollNo" formControlName="rollNo">
+            </div>
+          </div>
+
+        <div class="form-group row">
+          <div class="col-sm-4 offset-sm-2">
+            <button type="submit" class="btn btn-primary mr-2" (click)="savebyid(stud,i)">Save</button>
+            <button type="reset" class="btn btn-sm btn-outline-primary" (click)="cancel()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </ng-container>   -->
+</div>

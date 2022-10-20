@@ -1,0 +1,396 @@
+<div class="container">
+  <h2 class="py-4">ALL STUDENTS</h2>
+
+  <table class="table">
+    <thead>
+
+      <tr>
+        <th scope="col">INDEX</th>
+        <th scope="col">PARENT_NAME</th>
+        <th scope="col">STUDENT_NAME</th>
+        <th scope="col">AGE</th>
+        <th scope="col">REG DATE</th>
+        <th scope="col">STUDENT_REGNO</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">STATE</th>
+        <th scope="col">COUNTRY</th>
+        <th scope="col">CITY</th>
+        <th scope="col">ZIP_CODE</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">PRIM_CONTACT_PERSON</th>
+        <th scope="col">PRIM_CONTACT_NO</th>
+        <th scope="col">SEC_CONTACT_PERSON</th>
+        <th scope="col">SEC_CONTACT_NO</th>
+        <th scope="col">APPLICATION_STATUS</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of students; index as i">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{b.parentName}}</td>
+        <td>{{b.studentName}}</td>
+        <td>{{b.age}}</td>
+        <td>{{b.regDate}}</td>
+        <td>{{b.studentRegNo}}</td>
+        <td>{{b.address}}</td>
+        <td>{{b.state}}</td>
+        <td>{{b.country}}</td>
+        <td>{{b.city}}</td>
+        <td>{{b.zipCode}}</td>
+        <td>{{b.email}}</td>
+        <td>{{b.primContactPerson}}</td>
+        <td>{{b.primContactPersonMobile}}</td>
+        <td>{{b.secContactPerson}}</td>
+        <td>{{b.secContactPersonMobile}}</td>
+        <td>{{b.applicationStatus}}</td>
+
+        <td><button type="button" (click)="updatestudent(b, i)" style="margin-right:500;"
+            class="btn btn-warning">Edit</button></td>
+        <td><button type="button" (click)="deleteRow(b,i)" style="margin-right:500;"
+            class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- start -->
+
+  <div class="container">
+    <div class="row ">
+      <div class="col-lg-7 mx-auto">
+        <div class="card mt-2 mx-auto p-4 bg-dark">
+          <div class="card-body bg-light">
+
+            <div class="container">
+              <form id="contact-form" role="form">
+                <b>UPDATE STUDENT</b>
+                <div class="controls">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_name">Parent Name</label>
+                        <input id="form_name" type="text" [(ngModel)]=student.parentName name="parentName"
+                          class="form-control" placeholder="Enter Parent Name" required="required"
+                          data-error="parentName is required." onKeyPress="if(this.value.length==15) return false;"
+                          pattern="[a-zA-Z\s]+" #PrntPerson="ngModel" class="form-control">
+                      </div>
+                      <div *ngIf="PrntPerson.touched">
+                        <p *ngIf="PrntPerson.errors?.required">
+                          Parent Name is a required field!
+                        </p>
+                        <p *ngIf="PrimPerson.errors?.pattern">
+                          Parent Name is invalid name!
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_name">Student Name</label>
+                        <input id="form_name" type="text" appAlphabetOnly [(ngModel)]=student.studentName
+                          name="studentName" class="form-control" placeholder="Enter Student Name" required="required"
+                          data-error="studentName is required." onKeyPress="if(this.value.length==15) return false;"
+                          pattern="[a-zA-Z\s]+" #StdntN="ngModel">
+                      </div>
+                      <div *ngIf="StdntN.touched">
+                        <p *ngIf="StdntN.errors?.required">
+                          Student Name is a required field!
+                        </p>
+                        <p *ngIf="PrimPerson.errors?.pattern">
+                          Student Name is invalid name!
+                        </p>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="form_need">Age</label>
+                            <select id="form_need" [(ngModel)]=student.age name="age"
+                                class="form-control" onKeyPress="if(this.value) return false;"
+                                #age="ngModel" required="required"
+                                data-error="Please specify your need.">
+                                <option value="" selected disabled>Select Age</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+                                <option>16</option>
+                                <option>17</option>
+                                <option>18</option>
+                                <option>19</option>
+                                <option>20</option>
+                            </select>
+
+
+                        </div>
+                        <div *ngIf="age.touched">
+                            <p *ngIf="age.errors?.required">
+                                Student Age is a required field!
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+
+                            <label for="form_date">Regestration Date</label>
+                            <input id="form_date" type="date" [(ngModel)]=student.regDate name="regDate"
+                                class="form-control" placeholder="Enter Regestration date"
+                                required="required" data-error="Regestration Date is required.">
+                        </div>
+                    </div>
+                </div>
+
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_price">Address</label>
+                        <input id="form_price" type="text" [(ngModel)]=student.address name="address"
+                          class="form-control" placeholder="Enter Address" required="required"
+                          data-error="Address is required." onKeyPress="if(this.value.length==15) return false;"
+                          pattern="[a-zA-Z\s]+" #address="ngModel">
+                      </div>
+                      <div *ngIf="address.touched">
+                        <p *ngIf="StdntN.errors?.required">
+                          Address Name is a required field!
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_state">State</label>
+                        <input id="form_state" type="text" [(ngModel)]=student.state name="state" class="form-control"
+                          placeholder="Enter state" required="required" data-error="Enter state.">
+
+
+                      </div>
+
+
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_country">Country</label>
+                        <input id="form_country" type="text" [(ngModel)]=student.country name="country"
+                          class="form-control" placeholder="Enter country" required="required"
+                          data-error="country is required.">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_city">City</label>
+                        <input id="form_city" type="text" [(ngModel)]=student.city name="state" class="form-control"
+                          placeholder="Enter city" required="required" data-error="Enter city.">
+                      </div>
+                    </div>
+
+
+
+                  </div>
+
+
+
+
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_zipCode">Zip Code</label>
+                        <input id="form_zipCode" type="number" [(ngModel)]=student.zipCode #input OnlyNumber="true"
+                          name="zipCode" #ZipPattern="ngModel" placeholder="Enter Zipcode" data-error="Enter Zipcode"
+                          required="Enter Zipcode" onKeyPress="if(this.value.length==6) return false;" pattern="[0-9]+"
+                          class="form-control">
+                      </div>
+                      <div *ngIf="ZipPattern.touched">
+                        <p *ngIf="ZipPattern.errors?.required">
+                          ZipCode is a required field!
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_email">Email</label>
+                        <input id="form_email" type="email" [(ngModel)]=student.email name="email"
+                          #emailWithPattern="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                          class="form-control" placeholder="Enter email" data-error="Enter email."
+                          required="Email required">
+                      </div>
+                      <div *ngIf="emailWithPattern.touched">
+                        <p *ngIf="emailWithPattern.errors?.required">
+                          Email is a required field!
+                        </p>
+                        <p *ngIf="emailWithPattern.errors?.pattern">
+                          This is not a valid Email!!!
+                        </p>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_primContactPerson">Prim Contact Person</label>
+                        <input id="form_primContactPerson" type="text" [(ngModel)]=student.primContactPerson
+                          name="primContactPerson" class="form-control" placeholder="Enter prim Contact Person"
+                          required="required" data-error="primContactPerson is required."
+                          onKeyPress="if(this.value.length==15) return false;" pattern="[a-zA-Z\s]+"
+                          #PrimPerson="ngModel" class="form-control">
+                      </div>
+                      <div *ngIf="PrimPerson.touched">
+                        <p *ngIf="PrimPerson.errors?.required">
+                          Secondary Name is a required field!
+                        </p>
+                        <p *ngIf="PrimPerson.errors?.pattern">
+                          Secondary Name is invalid name!
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_primContactPersonMobile">Prim Contact Person
+                          Mobile</label>
+                        <input id="form_primContactPersonMobile" type="number" #input OnlyNumber="true"
+                          title="Please enter valid phone number" [(ngModel)]=student.primContactPersonMobile
+                          name="primContactPersonMobile" class="form-control"
+                          placeholder="Enter prim Contact Person Mobile" required="required"
+                          data-error="phone is required." onKeyPress="if(this.value.length==10) return false;"
+                          #PrimNoPattern="ngModel" class="form-control">
+                      </div>
+                      <div *ngIf="PrimNoPattern.touched">
+                        <p *ngIf="PrimNoPattern.errors?.required">
+                          Primary Number is a required field!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_secContactPerson">Sec Contact Person</label>
+                        <input id="form_secContactPerson" type="text" [(ngModel)]=student.secContactPerson
+                          name="secContactPerson" class="form-control" placeholder="Enter Sec Contact Person"
+                          required="required" data-error="Sec Contact Person is required."
+                          onKeyPress="if(this.value.length==15) return false;" pattern="[a-zA-Z\s]+"
+                          #SecPerson="ngModel" class="form-control">
+                      </div>
+                      <div *ngIf="SecPerson.touched">
+                        <p *ngIf="SecPerson.errors?.required">
+                          Secondary Name is a required field!
+                        </p>
+                        <p *ngIf="SecPerson.errors?.pattern">
+                          Secondary Name is invalid name!
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="form_secContactPersonMobile">Sec Contact Person
+                          Mobile</label>
+                        <input id="form_secContactPersonMobile" type="number" maxlength="10" #input OnlyNumber="true"
+                          pattern="\d{10}" [(ngModel)]=student.secContactPersonMobile name="secContactPersonMobile"
+                          class="form-control" placeholder="Enter Sec Contact Person Mobile" required="required"
+                          data-error="secContactPersonMobile is required."
+                          onKeyPress="if(this.value.length==10) return false;" #SecConPerson="ngModel"
+                          class="form-control">
+                      </div>
+                      <div *ngIf="SecConPerson.touched">
+                        <p *ngIf="SecConPerson.errors?.required">
+                          Secondary Contact Number is a required field!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <br>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button (click)="update(student)">Update Student</button>
+
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </form>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.8 -->
+
+      </div>
+      <!-- /.row-->
+
+    </div>
+  </div>
+
+  <!-- <input [(ngModel)]='student.parentName' placeholder="Enter parentName">
+    <br>
+    <br>
+    <input [(ngModel)]='student.studentName' placeholder="Enter studentName">
+    <br>
+    <br>
+    <input [(ngModel)]='student.studentRegNo' placeholder="Enter studentRegNo">
+    <br> 
+    <br>
+    <input [(ngModel)]='student.address' placeholder="Enter address">
+    <br>
+    <br>
+    <input [(ngModel)]='student.state' placeholder="Enter state">
+    <br/>
+    <br/>
+    <input [(ngModel)]='student.country' placeholder="Enter country">
+    <br/>
+    <br/>
+    <input [(ngModel)]='student.city' placeholder="Enter city">
+    <br/>
+    <br/>
+    <input [(ngModel)]='student.zipCode' placeholder="Enter zipCode">
+    <br/>
+    <br/>
+    <input [(ngModel)]='student.email' placeholder="Enter email">
+    <br/>
+    <br/>
+    <input [(ngModel)]='student.primContactPerson' placeholder="Enter primContactPerson">
+    <br/>
+    <br/>
+    <input [(ngModel)]='student.primContactPersonMobile' placeholder="Enter primContactPersonMobile">
+    <br/>
+    <br/>
+    <input [(ngModel)]='student.secContactPerson' placeholder="Enter secContactPerson">
+    <br/>
+    <br/>
+    <input [(ngModel)]='student.secContactPersonMobile' placeholder="Enter secContactPersonMobile">
+    <br/>
+    <br/>-->
+  <!-- <input [(ngModel)]='student.applicationStatus' placeholder="Enter applicationStatus"> -->
+  <!-- <br/>
+    <button (click)="update(student)">Update Student</button> -->
+
+
+
+</div>

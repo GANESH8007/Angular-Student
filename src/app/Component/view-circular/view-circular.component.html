@@ -1,0 +1,53 @@
+<div class="container">
+    <h2 class="py-4">ALL CIRCULARS</h2>
+
+    <table class="table">
+        <thead>
+
+            <tr>
+                <th scope="col">INDEX</th>
+                <th scope="col">DATE</th>
+                <th scope="col">SUBJECT</th>
+                <th scope="col">DISCRIPTION</th>
+                <th scope="col">ACKNOWLEDGED</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let b of circulars; index as i">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{b.date}}</td>
+                <td>{{b.subject}}</td>
+                <td>{{b.discription}}</td>
+                <td>{{b.acknowledge}}</td>
+
+
+
+                <td><button type="button" (click)="updateCircular(b, i)" style="margin-right:500;"
+                        class="btn btn-warning">Acknowledge</button>
+                </td>
+
+
+            </tr>
+        </tbody>
+    </table>
+
+<!-- <ng-container *ngIf="stud">  -->
+<!-- <pre *ngIf="circular">{{circular.value | json}}</pre> 
+    
+      <ng-container *ngIf="circular"> -->
+    
+    <input [(ngModel)]='circular.subject' placeholder="Circular Subject" readonly>
+    <br>
+    <br>
+    <label for="form_need">Acknowledge</label>
+    <select id="form_need" [(ngModel)]=circular.acknowledge name="acknowledge"
+        class="form-control" required="required"
+        data-error="Please specify your need.">
+        <option value="" selected disabled>Please acknowledge</option>
+        <option>Yes</option> 
+        <option>No</option>   
+    </select>
+    <br>
+    <button (click)="update(circular)">Acknowldge</button>
+<!-- </ng-container> -->
+</div>
